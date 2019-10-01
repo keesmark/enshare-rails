@@ -1,34 +1,36 @@
-<div class="row">
-  <div class="col-md-12">
-    <%= form_for(@user) do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-      <div class='form-sign'>
-        <div class='text-center'>
-          <span style="font-size: 48px; color: Dodgerblue;">
-            <i class="fas fa-user"></i>
-          </span>
-          <h2 class='font-weight-normal'>
-            会員登録
-          </h2>
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(@user) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <div class='form-sign'>
+          <div class='text-center'>
+            <span style="font-size: 48px; color: Dodgerblue;">
+              <i class="fas fa-user"></i>
+            </span>
+            <h2 class='font-weight-normal'>
+              会員登録
+            </h2>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :name, '名前' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: 'コタロー' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.text_field :email, class: 'form-control', type: 'email', placeholder: 'example@aaa.com' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :password, 'パスワード' %>
+            <%= f.text_field :password, class: 'form-control', type: 'password', placeholder: 'password' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :password_confirmation, 'パスワードもう１度' %>
+            <%= f.text_field :password_confirmation, class: 'form-control', type: 'password', placeholder: 'もう1度' %>
+          </div>
         </div>
-        <div class='form-label-group'>
-          <%= f.label :name, 'Name' %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-        <div class='form-label-group'>
-          <%= f.label :email, 'email' %>
-          <%= f.text_field :email, class: 'form-control' %>
-        </div>
-        <div class='form-label-group'>
-          <%= f.label :password, 'password' %>
-          <%= f.text_field :password, class: 'form-control' %>
-        </div>
-        <div class='form-label-group'>
-          <%= f.label :password_confirmation, 'Confirmation' %>
-          <%= f.text_field :password_confirmation, class: 'form-control' %>
-        </div>
-      </div>
-    <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
-    <% end %>
+      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
   </div>
 </div>

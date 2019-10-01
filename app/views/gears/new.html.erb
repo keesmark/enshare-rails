@@ -1,0 +1,36 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(@gear) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <div class='form-sign'>
+          <div class='text-center'>
+            <span style="font-size: 48px; color: Dodgerblue;">
+              <i class="far fa-keyboard"></i>
+            </span>
+            <h2 class='font-weight-normal'>
+              ギア登録
+            </h2>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :title, 'タイトル' %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :amazonUrl, 'アマゾンリンク' %>
+            <%= f.text_field :amazonUrl, class: 'form-control' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :imgUrl, 'ギアのイメージ', for: "exampleFormControlFile1" %>
+            <%= f.text_field :imgUrl, class: 'form-control-file', type: 'file', id: 'exampleFormControlFile1' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :content, 'レビューやコメント' %>
+            <%= f.text_area :content, class: 'form-control', rows: '6' %>
+          </div>
+        </div>
+      <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

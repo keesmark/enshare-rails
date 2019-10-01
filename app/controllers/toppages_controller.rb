@@ -1,3 +1,5 @@
 class ToppagesController < ApplicationController
-  def index; end
+  def index
+    @gears = Gear.order('created_at DESC').page(params[:page])
+  end
 end

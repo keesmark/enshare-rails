@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class="card mb-3">
+    <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= @gear.title %></h5>
+      <p class="card-text"><%= @gear.content %></p>
+      <% if current_user == @gear.user %>
+        <%= link_to "編集", edit_gear_path(@gear), class: 'btn btn-success btn-xs' %>
+        <%= link_to "削除", @gear, method: :delete, data: { confirm: "本当によろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+      <% end %>
+      <p class="card-text"><small class="text-muted"><%= @gear.created_at %></small></p>
+    </div>
+  </div>
+</div>

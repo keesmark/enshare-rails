@@ -1,0 +1,16 @@
+<div class='d-flex flex-row flex-wrap justify-content-around'>
+  <% gears.each do |gear|%>
+    <div class="card" style="width: 18rem;">
+    <%= link_to((gear), class: 'a_link') do %>
+      <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= gear.title %></h5>
+    <% end %>
+        <p class="card-text"><%= gear.content %></p>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="far fa-heart"></i>
+      </div>
+    </div>
+  <% end %>
+</div>

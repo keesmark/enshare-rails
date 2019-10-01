@@ -42,12 +42,10 @@ AndOr:
 Layout/SpaceBeforeBlockBraces:
   Enabled: true
 
-# Use `foo { bar }` not `foo {bar}`.
 Layout/SpaceInsideBlockBraces:
   Enabled: true
   EnforcedStyleForEmptyBraces: space
 
-# Use `{ a: 1 }` not `{a:1}`.
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
 
@@ -56,3 +54,6 @@ Layout/SpaceInsideParens:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 20

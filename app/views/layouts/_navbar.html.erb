@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="/">
     <i class="fas fa-laptop-code" width="30" height="30" class="d-inline-block align-top"></i>
     エンシェア
   </a>
@@ -9,8 +9,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">ホーム<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="/">ホーム<span class="sr-only">(current)</span></a>
       <% if logged_in? %>
+        <%= link_to 'ギア登録', new_gear_path, class: 'nav-item nav-link'%>
         <%= link_to 'ユーザー一覧', users_path, class: 'nav-item nav-link' %>
         <%= link_to 'Myプロフィール', user_path(current_user), class: 'nav-item nav-link' %>
         <%= link_to 'ログアウト', signout_path, method: :delete, class: 'nav-item nav-link' %>

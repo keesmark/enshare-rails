@@ -1,36 +1,48 @@
-<div class="row">
-  <aside class="col-xs-4">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title"><%= @user.name %></h3>
-        <p class="card-text">
-          aaaaaaa
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title"><%= @user.name %></h3>
+          <p class="card-text">
+            aaaaaaa
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
     </div>
-  </aside>
-  <div class="col-xs-8">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#gear" role="tab" aria-controls="home" aria-selected="true">マイギア</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">フォロー</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="true">フォロワー</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
-        eeeeeeeeeeeeeeeeeeeeee
-      </div>
-      <div class="tab-pane fade" id="following" role="following" aria-labelledby="following-tab">
-        ddddddddddddddddddddddd
-      </div>
-      <div class="tab-pane fade" id="follower" role="follower" aria-labelledby="follower-tab">
-        fffffffffffffffffffffff
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#gear" role="tab" aria-controls="home" aria-selected="true">マイギア <span class="badge badge-info"><%= @count_gears %></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">フォロー</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="true">フォロワー</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
+          <ul class="list-unstyled">
+          <% @gears.each do |gear|%>
+            <li class="media">
+              <img src="/apple-691633_640.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1"><%= gear.title %></h5>
+              </div>
+            </li>
+            <hr>
+          <% end %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="following" role="following" aria-labelledby="following-tab">
+          ddddddddddddddddddddddd
+        </div>
+        <div class="tab-pane fade" id="follower" role="follower" aria-labelledby="follower-tab">
+          fffffffffffffffffffffff
+        </div>
       </div>
     </div>
   </div>
