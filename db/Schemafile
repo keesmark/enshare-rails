@@ -17,3 +17,15 @@ create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
 end
 
 add_foreign_key "gears", "user", name: "user_gear"
+
+create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.bigint "user_id", unsigned: true
+  t.bigint "follow_id", unsigned: true
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index "user_id"
+  t.index "follow_id"
+end
+
+add_foreign_key "relationships", "user", name: "user_relationship"
+add_foreign_key "users", "follow", name: "follow_user"

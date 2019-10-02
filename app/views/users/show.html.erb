@@ -7,7 +7,7 @@
           <p class="card-text">
             aaaaaaa
           </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <%= render 'relationships/follow_button', user: @user %>
         </div>
       </div>
     </div>
@@ -17,31 +17,45 @@
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#gear" role="tab" aria-controls="home" aria-selected="true">マイギア <span class="badge badge-info"><%= @count_gears %></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">フォロー</a>
+          <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">フォロー <span class="badge badge-info"><%= @count_followings %></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="true">フォロワー</a>
+          <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="true">フォロワー <span class="badge badge-info"><%= @count_followers %></span></a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
           <ul class="list-unstyled">
-          <% @gears.each do |gear|%>
+          <% @gears.each do |gear| %>
+          <%= link_to((gear), class: 'a_link') do %>
             <li class="media">
               <img src="/apple-691633_640.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
               <div class="media-body">
                 <h5 class="mt-0 mb-1"><%= gear.title %></h5>
               </div>
             </li>
+          <% end %>
             <hr>
           <% end %>
           </ul>
         </div>
         <div class="tab-pane fade" id="following" role="following" aria-labelledby="following-tab">
-          ddddddddddddddddddddddd
+          <ul class="list-group list-group-flush">
+          <% @user.followings.each do |user| %>
+            <%= link_to((user), class: 'a_link') do %>
+            <li class="list-group-item"><%= user.name %></li>
+            <% end %>
+          <% end %>
+          </ul>
         </div>
         <div class="tab-pane fade" id="follower" role="follower" aria-labelledby="follower-tab">
-          fffffffffffffffffffffff
+          <ul class="list-group list-group-flush">
+          <% @user.followers.each do |user| %>
+            <%= link_to((user), class: 'a_link') do %>
+            <li class="list-group-item"><%= user.name %></li>
+            <% end %>
+          <% end %>
+          </ul>
         </div>
       </div>
     </div>
