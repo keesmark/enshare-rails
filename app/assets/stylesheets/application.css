@@ -28,3 +28,11 @@
   text-decoration: none !important;
   color: #000;
 }
+.a_link:hover {
+  text-decoration: none !important;
+  color: #000;
+}
+
+.red {
+  color: red;
+}

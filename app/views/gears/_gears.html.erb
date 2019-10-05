@@ -8,8 +8,17 @@
     <% end %>
         <p class="card-text"><%= gear.content %></p>
         <i class="fas fa-shopping-cart"></i>
-        <i class="fas fa-heart"></i>
-        <i class="far fa-heart"></i>
+        <% if logged_in? %>
+          <% if current_user.favorite?(gear) %>
+            <%= link_to gear_favorites_path(gear.id), class: 'a_link', method: :delete do %>
+              <span class="red"><i class="fas fa-grin-hearts"></i></span>
+            <% end %>
+          <% else %>
+            <%= link_to gear_favorites_path(gear.id), class: 'a_link', method: :post do %>
+            <span class="red"><i class="far fa-grin-hearts"></i></span>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>

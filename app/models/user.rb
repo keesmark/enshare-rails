@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy, inverse_of: :user
   has_many :followers, through: :reverses_of_relationship, source: :user
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_gears, through: :favorites, source: :gear
 
   def follow(other_user)
     relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
@@ -23,5 +25,14 @@ class User < ApplicationRecord
 
   def following?(other_user)
     followings.include?(other_user)
+  end
+
+  def favorite?(gear)
+    favorite_gears.include?(gear)
+  end
+
+  def unfavorite(gear)
+    favorite = favorites.find_by(gear_id: gear.id)
+    favorite&.destroy
   end
 end
