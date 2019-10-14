@@ -43,3 +43,12 @@ end
 
 add_foreign_key "favorites", "user", name: "user_favorites"
 add_foreign_key "favorites", "gear", name: "gear_favorites"
+
+create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.string "code", default: "", null: false
+  t.string "url", default: "", null: false
+  t.string "img_url", default: "", null: false
+  t.string "name", default: "", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end

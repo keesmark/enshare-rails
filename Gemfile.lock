@@ -83,6 +83,10 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     diffy (3.3.0)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.1)
@@ -168,6 +172,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (12.3.3)
+    rakuten_web_service (1.12.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -254,6 +259,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dotenv-rails
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
@@ -262,6 +268,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
   rails (~> 5.2.3)
+  rakuten_web_service
   ridgepole
   rubocop
   rubocop-rails
