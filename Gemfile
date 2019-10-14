@@ -67,3 +67,5 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'ridgepole'
+gem 'rakuten_web_service'
+gem 'dotenv-rails'

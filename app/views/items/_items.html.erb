@@ -1,0 +1,100 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <%= link_to "モニター", items_path(genre_id: 110105), method: :get, class: "nav-link #{ @genre_id == "110105" ? "active" : "" }", id: "r-monitor-tab", "data-toggle": "tab", role: "tab", "arial-controls": "r-monitor", "aria-selected": "#{ @genre_id == "110105" ? "true" : "false" }" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "キーボード", items_path(genre_id: 560088), method: :get, class: "nav-link #{ @genre_id == "560088" ? "active" : "" }", id: "r-keyboard-tab", "data-toggle": "tab", role: "tab", "aria-controls": "r-keyboard", "aria-selected": "#{ @genre_id == "560088" ? "true" : "false" }" %>
+  </li>
+  <li class="nav-item">
+  <%= link_to "マウス", items_path(genre_id: 565170), method: :get, class: "nav-link #{ @genre_id == "565170" ? "active" : "" }", id: "r-mise-tab", "data-toggle": "tab", role: "tab", "aria-controls": "r-mise", "aria-selected": "#{ @genre_id == "565170" ? "true" : "false" }" %>
+  </li>
+  <li class="nav-item">
+  <%= link_to "チェア", items_path(genre_id: 205739), method: :get, class: "nav-link #{ @genre_id == "205739" ? "active" : "" }", id: "r-chair-tab", "data-toggle": "tab", role: "tab", "aria-controls": "r-chair", "aria-selected": "#{ @genre_id == "205739" ? "true" : "false" }" %>
+  </li>
+  <li class="nav-item">
+  <%= link_to "イヤホン", items_path(genre_id: 502835), method: :get, class: "nav-link #{ @genre_id == "502835" ? "active" : "" }", id: "r-earphone-tab", "data-toggle": "tab", role: "tab", "aria-controls": "r-earphone", "aria-selected": "#{ @genre_id == "502835" ? "true" : "false" }" %>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade <%= @genre_id == "110105" ? "active show" : "" %>" id="r-monitor" role="tabpanel" aria-labelledby="r-monitor-tab">
+    <% if items %>
+      <% items.first(10).each_with_index do |item, index| %>
+      <div class="media">
+        <img src="<%= item.img_url %>" class="mr-3" alt="<%= item.name %>">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <span class="badge badge-pill badge-primary"><%= index+1 %>位</span>
+          </h5>
+          <%= item.name %><br>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade <%= @genre_id == "560088" ? "active show" : "" %>" id="r-keyboard" role="tabpanel" aria-labelledby="r-keyboard-tab">
+    <% if items %>
+      <% items.first(10).each_with_index do |item, index| %>
+      <div class="media">
+        <img src="<%= item.img_url %>" class="mr-3" alt="<%= item.name %>">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <span class="badge badge-pill badge-primary"><%= index+1 %>位</span>
+          </h5>
+          <%= item.name %><br>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade <%= @genre_id == "565170" ? "active show" : "" %>" id="r-mise" role="tabpanel" aria-labelledby="r-mise-tab">
+    <% if items %>
+      <% items.first(10).each_with_index do |item, index| %>
+      <div class="media">
+        <img src="<%= item.img_url %>" class="mr-3" alt="<%= item.name %>">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <span class="badge badge-pill badge-primary"><%= index+1 %>位</span>
+          </h5>
+          <%= item.name %><br>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade <%= @genre_id == "205739" ? "active show" : "" %>" id="r-chair" role="tabpanel" aria-labelledby="r-chair-tab">
+    <% if items %>
+      <% items.first(10).each_with_index do |item, index| %>
+      <div class="media">
+        <img src="<%= item.img_url %>" class="mr-3" alt="<%= item.name %>">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <span class="badge badge-pill badge-primary"><%= index+1 %>位</span>
+          </h5>
+          <%= item.name %><br>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade <%= @genre_id == "502835" ? "active show" : "" %>" id="r-earphone" role="tabpanel" aria-labelledby="r-earphone-tab">
+    <% if items %>
+      <% items.first(10).each_with_index do |item, index| %>
+      <div class="media">
+        <img src="<%= item.img_url %>" class="mr-3" alt="<%= item.name %>">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <span class="badge badge-pill badge-primary"><%= index+1 %>位</span>
+          </h5>
+          <%= item.name %><br>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
