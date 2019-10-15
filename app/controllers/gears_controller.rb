@@ -9,6 +9,7 @@ class GearsController < ApplicationController
 
   def create
     @gear = current_user.gears.build(gear_params)
+    logger.debug @gear.errors.inspect
     if @gear.save
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
@@ -42,7 +43,7 @@ class GearsController < ApplicationController
   private
 
   def gear_params
-    params.require(:gear).permit(:title, :amazonUrl, :imgUrl, :content)
+    params.require(:gear).permit(:title, :amazonUrl, :image, :content, :image_cache)
   end
 
   def correct_user
