@@ -4,7 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  #storage :file
+  # storage :file
   storage :fog
 
   # if Rails.env.production? || Rails.env.staging?
@@ -33,7 +33,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process :resize_to_limit => [1280, 670]
+  process resize_to_limit: [1280, 670]
 
   # Create different versions of your uploaded files:
   version :list do
@@ -47,7 +47,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:
@@ -57,8 +57,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   protected
-  def secure_token(length=16)
+
+  def secure_token(length = 16)
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length / 2))
   end
 end
