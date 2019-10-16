@@ -2,7 +2,11 @@
   <% gears.each do |gear|%>
     <div class="card" style="width: 18rem;">
     <%= link_to((gear), class: 'a_link') do %>
-      <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+      <% if gear.image? %>
+        <%= image_tag gear.image.list.to_s, class: "card-img-top", style: "width: 286px; height: 180px;" %>
+      <% else %>
+        <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+      <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= gear.title %></h5>
     <% end %>

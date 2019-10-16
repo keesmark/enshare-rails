@@ -1,6 +1,10 @@
 <div class='container'>
   <div class="card mb-3">
-    <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+    <% if @gear.image? %>
+      <%= image_tag @gear.image.to_s, class: "card-img-top" %>
+    <% else %>
+      <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+    <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= @gear.title %></h5>
       <p class="card-text"><%= @gear.content %></p>
