@@ -25,6 +25,9 @@
         <li class="nav-item">
           <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="true">フォロワー <span class="badge badge-info"><%= @count_followers %></span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" id="want-tab" data-toggle="tab" href="#want" role="tab" aria-controls="want" aria-selected="true">買い物リスト <span class="badge badge-info"><%= @count_want %></span></a>
+        </li>
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
@@ -46,7 +49,7 @@
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade show active" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+        <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
           <ul class="list-unstyled">
           <% @user.favorite_gears.each do |user| %>
           <%= link_to((user), class: 'a_link') do %>
@@ -61,7 +64,7 @@
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="following" role="following" aria-labelledby="following-tab">
+        <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
           <ul class="list-group list-group-flush">
           <% @user.followings.each do |user| %>
             <%= link_to((user), class: 'a_link') do %>
@@ -70,11 +73,26 @@
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="follower" role="follower" aria-labelledby="follower-tab">
+        <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
           <ul class="list-group list-group-flush">
           <% @user.followers.each do |user| %>
             <%= link_to((user), class: 'a_link') do %>
             <li class="list-group-item"><%= user.name %></li>
+            <% end %>
+          <% end %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="want" role="tabpanel" aria-labelledby="want-tab">
+          <ul class="list-unstyled">
+          <% @user_items.each do |item| %>
+            <%= link_to((item.url), class: 'a_link') do %>
+              <li class="media">
+                <%= image_tag item.img_url.to_s, style: "height: 64px; width: 64px;", class: "mr-3" %>
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1"><%= item.name %></h5>
+                </div>
+              </li>
+              <hr>
             <% end %>
           <% end %>
           </ul>

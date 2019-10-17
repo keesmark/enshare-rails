@@ -10,8 +10,9 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">ホーム<span class="sr-only">(current)</span></a>
+      <%= link_to '楽天ランキング', items_path,  class: 'nav-item nav-link' %>
       <% if logged_in? %>
-        <%= link_to 'ギア登録', new_gear_path, class: 'nav-item nav-link'%>
+        <%= link_to 'ギア登録', new_gear_path, class: 'nav-item nav-link' %>
         <%= link_to 'ユーザー一覧', users_path, class: 'nav-item nav-link' %>
         <%= link_to 'Myプロフィール', user_path(current_user), class: 'nav-item nav-link' %>
         <%= link_to 'ログアウト', signout_path, method: :delete, class: 'nav-item nav-link' %>
