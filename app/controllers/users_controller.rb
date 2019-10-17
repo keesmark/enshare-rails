@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @gears = @user.gears.order('created_at DESC').page(params[:page])
     counts(@user)
+    @user_items = @user.items
   end
 
   def new

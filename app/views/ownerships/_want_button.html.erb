@@ -1,0 +1,17 @@
+<% if current_user.want?(item) %>
+  <%= form_tag(ownership_path(item.id), method: :delete, class: "d-inline") do %>
+    <%= hidden_field_tag :item_id, item.id %>
+    <%= hidden_field_tag :type, 'Want' %>
+    <%= button_tag type: "submit", class: "btn btn-link a_link" do %>
+      <i class="fas fa-check-square"></i>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= form_tag(ownerships_path, class: "d-inline") do %>
+    <%= hidden_field_tag :item_code, item.code %>
+    <%= hidden_field_tag :type, 'Want' %>
+    <%= button_tag type: "submit", class: "btn btn-link a_link" do %>
+      <i class="far fa-check-square"></i>
+    <% end %>
+  <% end %>
+<% end %>

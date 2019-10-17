@@ -7,24 +7,9 @@ class ItemsController < ApplicationController
       genreId: @genre_id
     )
     results.each do |result|
-      item = Item.new(read(result))
+      item = Item.find_or_initialize_by(read(result))
       @items << item
     end
-  end
-
-  private
-
-  def read(result)
-    code = result['itemCode']
-    name = result['itemName']
-    url = result['itemUrl']
-    img_url = result['mediumImageUrls'][0]
-
-    {
-      code: code,
-      name: name,
-      url: url,
-      img_url: img_url
-    }
+    @ranking_counts = Want.count
   end
 end

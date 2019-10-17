@@ -14,5 +14,19 @@ class ApplicationController < ActionController::Base
     @count_followings = user.followings.count
     @count_followers = user.followers.count
     @count_favorites = user.favorites.count
+    @count_want = user.want_items.count
+  end
+
+  def read(result)
+    code = result['itemCode']
+    name = result['itemName']
+    url = result['itemUrl']
+    img_url = result['mediumImageUrls'][0]
+    {
+      code: code,
+      name: name,
+      url: url,
+      img_url: img_url
+    }
   end
 end

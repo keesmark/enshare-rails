@@ -57,3 +57,6 @@ Style/FrozenStringLiteralComment:
 
 Metrics/AbcSize:
   Max: 20
+
+Metrics/MethodLength:
+  Enabled: false
