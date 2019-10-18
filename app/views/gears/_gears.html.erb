@@ -1,3 +1,4 @@
+
 <div class='d-flex flex-row flex-wrap justify-content-around'>
   <% gears.each do |gear|%>
     <div class="card" style="width: 18rem;">
@@ -5,21 +6,21 @@
       <% if gear.image? %>
         <%= image_tag gear.image.list.to_s, class: "card-img-top", style: "width: 286px; height: 180px;" %>
       <% else %>
-        <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+        <img src="/no_image.jpg" class="card-img-top" alt="...">
       <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= gear.title %></h5>
+        <h5 class="card-title"><%= debug @favorites_count %><%= gear.title %></h5>
     <% end %>
         <p class="card-text"><%= gear.content %></p>
         <i class="fas fa-shopping-cart"></i>
         <% if logged_in? %>
           <% if current_user.favorite?(gear) %>
             <%= link_to gear_favorites_path(gear.id), class: 'a_link', method: :delete do %>
-              <span class="red"><i class="fas fa-grin-hearts"></i></span>
+              <span class="red"><i class="fas fa-heart"></i></span> <%= gear.favorites.count %>
             <% end %>
           <% else %>
             <%= link_to gear_favorites_path(gear.id), class: 'a_link', method: :post do %>
-            <span class="red"><i class="far fa-grin-hearts"></i></span>
+            <span class="red"><i class="far fa-heart"></i></span> <%= gear.favorites.count %>
             <% end %>
           <% end %>
         <% end %>

@@ -9,7 +9,6 @@ class GearsController < ApplicationController
 
   def create
     @gear = current_user.gears.build(gear_params)
-    logger.debug @gear.errors.inspect
     if @gear.save
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url

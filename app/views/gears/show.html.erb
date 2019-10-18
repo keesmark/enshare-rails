@@ -3,7 +3,7 @@
     <% if @gear.image? %>
       <%= image_tag @gear.image.to_s, class: "card-img-top" %>
     <% else %>
-      <img src="/apple-691633_640.jpg" class="card-img-top" alt="...">
+      <img src="/no_image.jpg" class="card-img-top" alt="...">
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= @gear.title %></h5>

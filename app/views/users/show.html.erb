@@ -38,7 +38,7 @@
               <% if gear.image? %>
                 <%= image_tag gear.image.thumb.to_s, style: "height: 64px; width: 64px;", class: "mr-3" %>
               <% else %>
-                <img src="/apple-691633_640.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
+                <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
               <% end %>
               <div class="media-body">
                 <h5 class="mt-0 mb-1"><%= gear.title %></h5>
@@ -54,7 +54,7 @@
           <% @user.favorite_gears.each do |user| %>
           <%= link_to((user), class: 'a_link') do %>
             <li class="media">
-              <img src="/apple-691633_640.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
+              <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
               <div class="media-body">
                 <h5 class="mt-0 mb-1"><%= user.title %></h5>
               </div>
