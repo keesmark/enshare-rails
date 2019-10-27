@@ -49,11 +49,8 @@ test:
 #
 production:
   <<: *default
-  database: enshare_production
-  adapter: mysql2
-  encoding: utf8
-  host: <%= Rails.application.credentials.rds[:host] %>
-  database: <%= Rails.application.credentials.rds[:database] %>
-  username: <%= Rails.application.credentials.rds[:username] %>
-  password: <%= Rails.application.credentials.rds[:password] %>
+  host: <%= ENV['RDS_HOST'] %>
+  database: <%= ENV['RDS_DATABASE'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
   port: 3306
