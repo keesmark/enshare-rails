@@ -12,4 +12,3 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 ADD . /app
-EXPOSE  80
