@@ -12,8 +12,6 @@ services:
       - db
     tty: true
     stdin_open: true
-    environment:
-      - production
   db:
     image: mysql:5.7
     volumes:
