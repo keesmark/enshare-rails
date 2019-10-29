@@ -7,7 +7,7 @@ services:
       - .:/app
       - bundle:/bundle
     ports:
-      - "3000:80"
+      - "80:80"
     depends_on:
       - db
     tty: true
