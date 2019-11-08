@@ -10,5 +10,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+ENV APP_ROOT /app
 RUN bundle install
 ADD . /app
