@@ -70,7 +70,7 @@ jobs:
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
           MYSQL_USER: "root"
-          DB_PASSWORD: "password12@"
+          DB_PASSWORD: ""
           MYSQL_DATABASE: app_test
           MYSQL_PORT: 3306
 
@@ -78,6 +78,10 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
+      environment:
+          MYSQL_DATABASE: app_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/your_app_name
 
