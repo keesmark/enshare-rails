@@ -1,61 +1,123 @@
-version: 2.1
-# orbs:
-#   aws-ecr: circleci/aws-ecr@6.4.0
-#   aws-ecs: circleci/aws-ecs@1.0.0
-executors:
-  default:
+# version: 2.1
+# # orbs:
+# #   aws-ecr: circleci/aws-ecr@6.4.0
+# #   aws-ecs: circleci/aws-ecs@1.0.0
+# executors:
+#   default:
+#     docker:
+#       - image: circleci/ruby:2.6.3
+#         environment:
+#           RAILS_ENV: test
+#       - image: mysql:5.7
+#         environment:
+#           MYSQL_USER: root
+#           MYSQL_ALLOW_EMPTY_PASSWORD: yes
+#     working_directory: ~/app
+# jobs:
+#   checkout_code:
+#     executor: default
+#     steps:
+#       - checkout
+#       - save_cache:
+#           key: app-code-{{ .Environment.CIRCLE_SHA1 }}
+#           paths: ~/app
+#   bundle_install:
+#     executor: default
+#     steps:
+#       - restore_cache:
+#           key: app-code-{{ .Environment.CIRCLE_SHA1 }}
+#       - restore_cache:
+#           key: app-gems-{{ checksum "Gemfile.lock" }}
+#       - run:
+#           name: install dependencies
+#           command: |
+#             bundle install
+#       - save_cache:
+#           key: app-gems-{{ checksum "Gemfile.lock" }}
+#           paths:
+#             - vendor/bundle
+#   test_rspec:
+#     executor: default
+#     steps:
+#       - restore_cache:
+#           key: app-code-{{ .Environment.CIRCLE_SHA1 }}
+#       - restore_cache:
+#           key: app-gems-{{ checksum "Gemfile.lock" }}
+#       - run:
+#           name: Database setup
+#           command: bundle exec rails db:create db:schema:load
+#       - run: bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
+#       - run: bundle exec rspec spec/
+# workflows:
+#   version: 2
+#   test:
+#     jobs:
+#       - checkout_code
+#       - bundle_install:
+#           requires:
+#             - checkout_code
+#       - test_rspec:
+#           requires:
+#             - bundle_install
+
+version: 2
+jobs:
+  build:
     docker:
-      - image: circleci/ruby:2.6.3
+      # specify the version you desire here
+      - image: circleci/ruby:2.5.1-node-browsers
         environment:
           RAILS_ENV: test
-      - image: mysql:5.7
-        environment:
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-    working_directory: ~/enshare-rails
-jobs:
-  checkout_code:
-    executor: default
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/mysql:5.7
+
+    working_directory: ~/your_app_name
+
     steps:
       - checkout
-      - save_cache:
-          key: app-code-{{ .Environment.CIRCLE_SHA1 }}
-          paths: ~/enshare-rails
-  bundle_install:
-    executor: default
-    steps:
+
+      # Download and cache dependencies
       - restore_cache:
-          key: app-code-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: app-gems-{{ checksum "Gemfile.lock" }}
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
       - run:
           name: install dependencies
           command: |
-            bundle install
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - save_cache:
-          key: app-gems-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
-  test_rspec:
-    executor: default
-    steps:
-      - restore_cache:
-          key: app-code-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: app-gems-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: Database setup
-          command: bundle exec rails db:create db:schema:load
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
       - run: bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
-      - run: bundle exec rspec spec/
-workflows:
-  version: 2
-  test:
-    jobs:
-      - checkout_code
-      - bundle_install:
-          requires:
-            - checkout_code
-      - test_rspec:
-          requires:
-            - bundle_install
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
