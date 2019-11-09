@@ -12,7 +12,7 @@ executors:
         environment:
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-    working_directory: ~/app
+    working_directory: ~/enshare-rails
 jobs:
   checkout_code:
     executor: default
@@ -20,7 +20,7 @@ jobs:
       - checkout
       - save_cache:
           key: app-code-{{ .Environment.CIRCLE_SHA1 }}
-          paths: ~/app
+          paths: ~/enshare-rails
   bundle_install:
     executor: default
     steps:
@@ -44,13 +44,9 @@ jobs:
       - restore_cache:
           key: app-gems-{{ checksum "Gemfile.lock" }}
       - run:
-          name: install bundle
-          command: bundle install
-      - run:
           name: Database setup
-          command: |
-            - bundle exec rails db:create db:schema:load
-            - bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
+          command: bundle exec rails db:create db:schema:load
+      - run: bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
       - run: bundle exec rspec spec/
 workflows:
   version: 2
