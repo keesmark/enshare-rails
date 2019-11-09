@@ -1,6 +1,6 @@
 FROM ruby:2.6.3
 
-RUN apt-get rm -rf /var/lib/apt/lists/* update -qq && \
+RUN apt-get update -qq && \
   apt-get install -y build-essential \
   libpq-dev \
   vim \
