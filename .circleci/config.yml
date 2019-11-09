@@ -59,7 +59,6 @@
 #       - test_rspec:
 #           requires:
 #             - bundle_install
-
 version: 2
 jobs:
   build:
