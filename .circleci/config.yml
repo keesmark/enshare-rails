@@ -49,8 +49,8 @@ jobs:
       - run:
           name: Database setup
           command: |
-            bundle exec rails db:create db:schema:load
-            bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
+            - bundle exec rails db:create db:schema:load
+            - bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
       - run: bundle exec rspec spec/
 workflows:
   version: 2
