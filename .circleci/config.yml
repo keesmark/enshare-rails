@@ -68,6 +68,7 @@ jobs:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
           RAILS_ENV: test
+          DB_HOST: 127.0.0.1
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
