@@ -44,8 +44,8 @@ jobs:
       - restore_cache:
           key: app-gems-{{ checksum "Gemfile.lock" }}
       - run:
-          name: gem install bundler
-          command: gem install bundler
+          name: install bundle
+          command: bundle install
       - run:
           name: Database setup
           command: |
