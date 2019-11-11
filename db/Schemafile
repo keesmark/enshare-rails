@@ -6,6 +6,7 @@ create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.timestamp "updated_at", null: false
 end
 
+
 create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.string "title", default: "", null: false
   t.string "amazonUrl", default: ""
