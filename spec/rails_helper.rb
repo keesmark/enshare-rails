@@ -2,11 +2,11 @@
 require 'spec_helper'
 require 'capybara/rspec'
 
-Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
+Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
 Capybara.server_port = 3001
 
 Capybara.register_driver :selenium_remote do |app|
-  url = "http://chrome:4444/wd/hub"
+  url = 'http://chrome:4444/wd/hub'
   opts = { desired_capabilities: :chrome, browser: :remote, url: url }
   driver = Capybara::Selenium::Driver.new(app, opts)
 end
@@ -16,7 +16,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -38,7 +38,7 @@ require 'rspec/rails'
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
-  #ActiveRecord::Migration.maintain_test_schema!
+  # ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
