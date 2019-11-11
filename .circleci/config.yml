@@ -73,9 +73,6 @@ jobs:
           MYSQL_DATABASE: app_test
           MYSQL_PORT: 3306
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: app_test
@@ -87,7 +84,6 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -121,7 +117,6 @@ jobs:
                             --format progress \
                             $TEST_FILES
 
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
