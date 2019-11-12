@@ -18,7 +18,6 @@ create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.index "user_id"
 end
 
-add_foreign_key "gears", "users”
 
 
 create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -29,7 +28,6 @@ create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT C
   t.index "user_id, follow_id", unique: true
 end
 
-add_foreign_key "relationships", "users”, name: "user_relationship"
 
 create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.bigint "gear_id", unsigned: true
@@ -41,8 +39,6 @@ create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARS
   t.index "user_id, gear_id", unique: true
 end
 
-add_foreign_key "favorites", "users”
-add_foreign_key "favorites", "gears”
 
 create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.string "code", default: "", null: false
@@ -64,5 +60,3 @@ create_table "ownerships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHAR
   t.index "user_id, item_id, type", unique: true
 end
 
-add_foreign_key "ownerships", "users”
-add_foreign_key "ownerships", "items”
