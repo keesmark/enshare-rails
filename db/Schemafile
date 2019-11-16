@@ -6,7 +6,9 @@ create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.timestamp "updated_at", null: false
 end
 
+
 create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.bigint "user_id", unsigned: true
   t.string "title", default: "", null: false
   t.string "amazonUrl", default: ""
   t.string "image", default: ""
@@ -14,9 +16,13 @@ create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.integer "price", default: "", unsigned: true
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
-  t.bigint "user_id", unsigned: true
+  t.index "user_id"
 end
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c39b30791fabec9673b2098602532c52c394da53
 create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.bigint "user_id", unsigned: true
   t.bigint "follow_id", unsigned: true
@@ -54,4 +60,9 @@ create_table "ownerships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHAR
   t.index "item_id"
   t.index "user_id"
   t.index "user_id, item_id, type", unique: true
+<<<<<<< HEAD
 end
+=======
+end
+
+>>>>>>> c39b30791fabec9673b2098602532c52c394da53

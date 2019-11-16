@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワードをもう一度入力してください
+        email: メールアドレス
+        current_password: 現在のパスワード
+      gear:
+        title: タイトル
+        amazonUrl: 商品URL
+        content: 本文
+        image_url: 商品画像

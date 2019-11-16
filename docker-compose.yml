@@ -2,16 +2,30 @@ version: "3"
 services:
   web:
     build: .
+<<<<<<< HEAD
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 80 -b '0.0.0.0'"
     volumes:
+=======
+    command:
+      bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+>>>>>>> c39b30791fabec9673b2098602532c52c394da53
       - .:/app
       - bundle:/bundle
+    environment:
+      RAILS_ENV: production
     ports:
-      - "80:80"
+      - "3000:3000"
     depends_on:
       - db
+      - chrome
     tty: true
     stdin_open: true
+    volumes:
+      - .:/app
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-dubnium
+    ports:
+      - 4444:4444
   db:
     image: mysql:5.7
     volumes:
