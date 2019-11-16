@@ -1,0 +1,36 @@
+{
+    "editor.formatOnPaste": true,
+    // emmetの言語設定を日本語に
+    "emmet.variables": {
+        "lang": "ja"
+    },
+    "window.zoomLevel": 2,
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.formatOnSave": true,
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html"
+    },
+    "emmet.syntaxProfiles": {
+        "html": {
+            "attr_quotes": "single"
+        },
+        "jsx": {
+            "self_closing_tag": true
+        },
+        "files.associations": {
+            "*.erb": "erb"
+        },
+        "emmet.includeLanguages": {
+            "erb": "html"
+        }
+    },
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "git.suggestSmartCommit": false,
+    "workbench.statusBar.visible": true,
+    "emmet.showAbbreviationSuggestions": false
+}

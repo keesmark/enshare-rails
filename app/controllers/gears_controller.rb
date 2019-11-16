@@ -10,17 +10,17 @@ class GearsController < ApplicationController
   def create
     @gear = current_user.gears.build(gear_params)
     if @gear.save
-      flash[:success] = 'メッセージを投稿しました。'
+      flash[:success] = 'ギアを投稿しました。'
       redirect_to root_url
     else
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      flash.now[:danger] = 'ギアの投稿に失敗しました。'
       render 'toppages/index'
     end
   end
 
   def destroy
     @gear.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = 'ギアを削除しました。'
     redirect_to root_url
   end
 
@@ -30,10 +30,10 @@ class GearsController < ApplicationController
 
   def update
     if @gear.update(gear_params)
-      flash[:success] = 'Message は正常に更新されました'
+      flash[:success] = 'ギアは正常に更新されました'
       redirect_to @gear
     else
-      flash.now[:danger] = 'Message は更新されませんでした'
+      flash.now[:danger] = 'ギアは更新されませんでした'
       render :edit
     end
   end
@@ -41,7 +41,7 @@ class GearsController < ApplicationController
   private
 
   def gear_params
-    params.require(:gear).permit(:title, :amazonUrl, :image, :content, :image_cache)
+    params.require(:gear).permit(:title, :amazonUrl, :image, :content, :image_cache, :price)
   end
 
   def correct_user

@@ -8,7 +8,7 @@ class OwnershipsController < ApplicationController
     end
     if params[:type] == 'Want'
       current_user.want(@item)
-      flash[:success] = '商品を Want しました。'
+      flash[:success] = '商品をホシイ！しました。'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -18,7 +18,7 @@ class OwnershipsController < ApplicationController
     counts(@item)
     if params[:type] == 'Want'
       current_user.unwant(@item)
-      flash[:success] = '商品の Want を解除しました。'
+      flash[:success] = '商品のホシイ！を解除しました。'
     end
     redirect_back(fallback_location: root_path)
   end

@@ -9,10 +9,16 @@
         <img src="/no_image.jpg" class="card-img-top" alt="...">
       <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= debug @favorites_count %><%= gear.title %></h5>
+        <h5 class="card-title"><%= gear.title %></h5>
     <% end %>
-        <p class="card-text"><%= gear.content %></p>
-        <i class="fas fa-shopping-cart"></i>
+        <p class="card-text text-truncate"><%= gear.content %></p>
+        <% if gear.amazonUrl? %>
+          <%= link_to "#{gear.amazonUrl}", class: "a_link" do %>
+            <i class="fas fa-shopping-cart"></i>
+          <% end %>
+        <% else %>
+          <i class="fas fa-shopping-cart"></i>
+        <% end %>
         <% if logged_in? %>
           <% if current_user.favorite?(gear) %>
             <%= link_to gear_favorites_path(gear.id), class: 'a_link', method: :delete do %>
@@ -24,7 +30,15 @@
             <% end %>
           <% end %>
         <% end %>
+        <% if gear.price? %>
+          <div class="card_price">
+            <%= gear.price %>円
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
+</div>
+<div class='d-flex justify-content-center'>
+  <%= paginate @gears %>
 </div>

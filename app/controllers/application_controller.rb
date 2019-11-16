@@ -22,11 +22,13 @@ class ApplicationController < ActionController::Base
     name = result['itemName']
     url = result['itemUrl']
     img_url = result['mediumImageUrls'][0]
+    price = result['itemPrice']
     {
       code: code,
       name: name,
       url: url,
-      img_url: img_url
+      img_url: img_url,
+      price: price
     }
   end
 end

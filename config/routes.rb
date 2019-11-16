@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'signout', to: 'sessions#destroy'
 
-  resources :users, only: [:index, :show, :new, :create] do
+  resources :users do
     member do
       get :followings
       get :followers

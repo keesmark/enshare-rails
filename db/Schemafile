@@ -11,12 +11,11 @@ create_table "gears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.string "amazonUrl", default: ""
   t.string "image", default: ""
   t.text "content", null: false
+  t.integer "price", default: "", unsigned: true
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
   t.bigint "user_id", unsigned: true
 end
-
-add_foreign_key "gears", "user", name: "user_gear"
 
 create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.bigint "user_id", unsigned: true
@@ -25,8 +24,6 @@ create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT C
   t.datetime "updated_at", null: false
   t.index "user_id, follow_id", unique: true
 end
-add_foreign_key "relationships", "user", name: "user_relationship"
-add_foreign_key "users", "follow", name: "follow_users"
 
 create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.bigint "gear_id", unsigned: true
@@ -38,14 +35,12 @@ create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARS
   t.index "user_id, gear_id", unique: true
 end
 
-add_foreign_key "favorites", "user", name: "user_favorites"
-add_foreign_key "favorites", "gear", name: "gear_favorites"
-
 create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   t.string "code", default: "", null: false
   t.string "url", default: "", null: false
   t.string "img_url", default: "", null: false
   t.string "name", default: "", null: false
+  t.string "price", default: "", null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
 end
@@ -60,6 +55,3 @@ create_table "ownerships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHAR
   t.index "user_id"
   t.index "user_id, item_id, type", unique: true
 end
-
-add_foreign_key "ownerships", "user", name: "user_ownerships"
-add_foreign_key "ownerships", "item", name: "item_ownerships"
