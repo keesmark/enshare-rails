@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(@user) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <div class='form-sign'>
+          <div class='text-center'>
+            <span style="font-size: 48px; color: Dodgerblue;">
+              <i class="fas fa-user"></i>
+            </span>
+            <h2 class='font-weight-normal'>
+              アカウント情報編集
+            </h2>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :name, '名前' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: 'コタロー' %>
+          </div>
+          <div class='form-label-group'>
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.text_field :email, class: 'form-control', type: 'email', placeholder: 'example@aaa.com' %>
+          </div>
+        </div>
+      <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

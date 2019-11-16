@@ -41,7 +41,7 @@ class GearsController < ApplicationController
   private
 
   def gear_params
-    params.require(:gear).permit(:title, :amazonUrl, :image, :content, :image_cache)
+    params.require(:gear).permit(:title, :amazonUrl, :image, :content, :image_cache, :price)
   end
 
   def correct_user

@@ -1,18 +1,23 @@
 <div class='container'>
-  <div class="card mb-3">
+  <div class="card mb-3 card_show">
     <% if @gear.image? %>
       <%= image_tag @gear.image.to_s, class: "card-img-top" %>
     <% else %>
       <img src="/no_image.jpg" class="card-img-top" alt="...">
     <% end %>
     <div class="card-body">
-      <h5 class="card-title"><%= @gear.title %></h5>
-      <p class="card-text"><%= @gear.content %></p>
+      <h5 class="card-title card_title_font"><%= @gear.title %></h5>
+      <hr>
+      <p class="card-text card_text_font">
+        <span class="text-muted card_text_top">内容：</span><br>
+        <%= @gear.content %>
+      </p>
+      <hr>
+      <p class="card-text float-right"><small class="text-muted">投稿者：<%= link_to "#{@gear.user.name}", @gear.user %>:<%= @gear.updated_at %></small></p>
       <% if current_user == @gear.user %>
         <%= link_to "編集", edit_gear_path(@gear), class: 'btn btn-success btn-xs' %>
         <%= link_to "削除", @gear, method: :delete, data: { confirm: "本当によろしいですか?" }, class: 'btn btn-danger btn-xs' %>
       <% end %>
-      <p class="card-text"><small class="text-muted"><%= @gear.created_at %></small></p>
     </div>
   </div>
 </div>

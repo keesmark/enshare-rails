@@ -17,3 +17,8 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+//= require bootstrap
+//= require jquery
+$(function(){
+  setTimeout("$('.alert').fadeOut('slow')", 1000) 
+})

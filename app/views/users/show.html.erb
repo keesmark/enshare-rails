@@ -1,13 +1,16 @@
 <div class='container'>
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card user_detail_top">
         <div class="card-body">
-          <h3 class="card-title"><%= @user.name %></h3>
-          <p class="card-text">
-            aaaaaaa
+          <h3 class="card-title text-center"><%= @user.name %></h3>
+          <p class="card-text text-center">
+            <%= render 'relationships/follow_button', user: @user %>
+            <% if current_user == @user %>
+              <%= link_to "ユーザー情報の変更", edit_user_path(current_user), class: 'btn btn-primary' %>
+              <%= link_to 'アカウントを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-danger" %>
+            <% end %>
           </p>
-          <%= render 'relationships/follow_button', user: @user %>
         </div>
       </div>
     </div>
@@ -17,7 +20,7 @@
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#gear" role="tab" aria-controls="home" aria-selected="true">マイギア <span class="badge badge-info"><%= @count_gears %></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true">ホシイ！ギア <span class="badge badge-info"><%= @count_favorites %></span></a>
+          <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true">イイね！ <span class="badge badge-info"><%= @count_favorites %></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">フォロー <span class="badge badge-info"><%= @count_followings %></span></a>
@@ -30,41 +33,43 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
-          <ul class="list-unstyled">
+        <div class="tab-pane tab_box fade show active" id="gear" role="tabpanel" aria-labelledby="home-tab">
+          <ul class="list-unstyled user_media">
           <% @gears.each do |gear| %>
-          <%= link_to((gear), class: 'a_link') do %>
-            <li class="media">
-              <% if gear.image? %>
-                <%= image_tag gear.image.thumb.to_s, style: "height: 64px; width: 64px;", class: "mr-3" %>
-              <% else %>
-                <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
-              <% end %>
-              <div class="media-body">
-                <h5 class="mt-0 mb-1"><%= gear.title %></h5>
-              </div>
-            </li>
-          <% end %>
-            <hr>
+            <%= link_to((gear), class: 'a_link') do %>
+              <li class="media">
+                <% if gear.image? %>
+                  <%= image_tag gear.image.thumb.to_s, style: "height: 64px; width: 64px;", class: "mr-3" %>
+                <% else %>
+                  <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
+                <% end %>
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1"><%= gear.title %></h5>
+                </div>
+              </li>
+            <% end %>
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
-          <ul class="list-unstyled">
+        <div class="tab-pane tab_box fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+          <ul class="list-unstyled user_media">
           <% @user.favorite_gears.each do |user| %>
-          <%= link_to((user), class: 'a_link') do %>
-            <li class="media">
-              <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
-              <div class="media-body">
-                <h5 class="mt-0 mb-1"><%= user.title %></h5>
-              </div>
-            </li>
-          <% end %>
-            <hr>
+            <%= link_to((user), class: 'a_link') do %>
+              <li class="media">
+                <% if user.image? %>
+                  <%= image_tag user.image.thumb.to_s, style: "height: 64px; width: 64px;", class: "mr-3" %>
+                <% else %>
+                  <img src="/no_image.jpg" class="mr-3" alt="img" style="height: 64px; width: 64px;">
+                <% end %>
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1"><%= user.title %></h5>
+                </div>
+              </li>
+            <% end %>
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
+        <div class="tab-pane tab_box fade" id="following" role="tabpanel" aria-labelledby="following-tab">
           <ul class="list-group list-group-flush">
           <% @user.followings.each do |user| %>
             <%= link_to((user), class: 'a_link') do %>
@@ -73,8 +78,8 @@
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
-          <ul class="list-group list-group-flush">
+        <div class="tab-pane tab_box fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
+          <ul class="list-group list-group-flush user_media">
           <% @user.followers.each do |user| %>
             <%= link_to((user), class: 'a_link') do %>
             <li class="list-group-item"><%= user.name %></li>
@@ -82,8 +87,8 @@
           <% end %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="want" role="tabpanel" aria-labelledby="want-tab">
-          <ul class="list-unstyled">
+        <div class="tab-pane tab_box fade" id="want" role="tabpanel" aria-labelledby="want-tab">
+          <ul class="list-unstyled user_media">
           <% @user_items.each do |item| %>
             <%= link_to((item.url), class: 'a_link') do %>
               <li class="media">
@@ -92,7 +97,6 @@
                   <h5 class="mt-0 mb-1"><%= item.name %></h5>
                 </div>
               </li>
-              <hr>
             <% end %>
           <% end %>
           </ul>
