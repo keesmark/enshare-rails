@@ -14,11 +14,7 @@ class GearsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = 'ギアの投稿に失敗しました。'
-<<<<<<< HEAD
-      render 'toppages/index'
-=======
       render :new
->>>>>>> c39b30791fabec9673b2098602532c52c394da53
     end
   end
 
