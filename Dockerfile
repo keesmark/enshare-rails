@@ -20,11 +20,11 @@ WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 ENV APP_ROOT /app
-ENV RAILS_ENV development
+ENV RAILS_ENV production
 RUN bundle install
 ADD . /app
 EXPOSE  80
 
-RUN RAILS_ENV=development bundle exec rake assets:precompile
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 RUN rm -f tmp/pids/server.pid
 CMD ["bundle", "exec", "rails", "s", "puma", "-e", "production"]
