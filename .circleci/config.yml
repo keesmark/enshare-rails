@@ -19,7 +19,9 @@ jobs:
           MYSQL_ROOT_HOST: "%"
 
     working_directory: ~/app
-
+    branches:
+      only:
+        - master
     steps:
       - checkout
 
@@ -38,11 +40,8 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec ridgepole -c config/database.yml -E test --apply -f db/Schemafile
-
-      # run tests!
       - run:
           name: run tests
           command: |
