@@ -20,9 +20,16 @@
             <%= f.label :amazonUrl, 'アマゾンリンク' %>
             <%= f.text_field :amazonUrl, class: 'form-control' %>
           </div>
-          <div class='form-label-group'>
-            <%= f.label :image, 'ギアのイメージ', for: "exampleFormControlFile1" %>
-            <%= f.text_field :image, class: 'form-control-file', type: 'file', id: 'exampleFormControlFile1' %>
+          <div class='form-row'>
+            <div class='form-label-group col'>
+              <%= f.label :price, '値段' %>
+              <%= f.text_field :price, class: 'form-control' %>
+            </div>
+            <div class='form-label-group col'>
+              <%= f.label :image, 'ギアのイメージ', for: "exampleFormControlFile1" %>
+              <%= f.file_field :image, class: 'form-control-file', id: 'exampleFormControlFile1' %>
+              <%= f.hidden_field :image_cache %>
+            </div>
           </div>
           <div class='form-label-group'>
             <%= f.label :content, 'レビューやコメント' %>

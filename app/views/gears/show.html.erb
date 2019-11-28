@@ -13,7 +13,27 @@
         <%= @gear.content %>
       </p>
       <hr>
+      <span class="small">値段：<%= @gear.price %></span>
+      <% if @gear.amazonUrl? %>
+        <%= link_to "#{@gear.amazonUrl}", class: "a_link" do %>
+          <i class="fas fa-shopping-cart"></i>
+        <% end %>
+      <% else %>
+        <i class="fas fa-shopping-cart"></i>
+      <% end %>
+      <% if logged_in? %>
+        <% if current_user.favorite?(@gear) %>
+          <%= link_to gear_favorites_path(@gear.id), class: 'a_link', method: :delete do %>
+            <span class="red"><i class="fas fa-heart"></i></span> <%= @gear.favorites.count %>
+          <% end %>
+        <% else %>
+          <%= link_to gear_favorites_path(@gear.id), class: 'a_link', method: :post do %>
+          <span class="red"><i class="far fa-heart"></i></span> <%= @gear.favorites.count %>
+          <% end %>
+        <% end %>
+      <% end %>
       <p class="card-text float-right"><small class="text-muted">投稿者：<%= link_to "#{@gear.user.name}", @gear.user %>:<%= @gear.updated_at %></small></p>
+      <hr>
       <% if current_user == @gear.user %>
         <%= link_to "編集", edit_gear_path(@gear), class: 'btn btn-success btn-xs' %>
         <%= link_to "削除", @gear, method: :delete, data: { confirm: "本当によろしいですか?" }, class: 'btn btn-danger btn-xs' %>

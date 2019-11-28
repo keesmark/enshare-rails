@@ -7,8 +7,13 @@
           <p class="card-text text-center">
             <%= render 'relationships/follow_button', user: @user %>
             <% if current_user == @user %>
-              <%= link_to "ユーザー情報の変更", edit_user_path(current_user), class: 'btn btn-primary' %>
-              <%= link_to 'アカウントを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-danger" %>
+              <%= link_to "ユーザー情報の変更", edit_user_path(current_user), class: "btn btn-primary #{ 'disabled' if current_user.email == 'test@test.com'}" %>
+              <%= link_to 'アカウントを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-danger #{ 'disabled' if current_user.email == 'test@test.com'} " %>
+            <% end %>
+            <% if current_user.email == "test@test.com" && current_user == @user %>
+              <div class='text-center'>
+                テストユーザは変更と削除できません。
+              </div>
             <% end %>
           </p>
         </div>
